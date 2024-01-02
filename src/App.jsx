@@ -1,10 +1,11 @@
+import { createBrowserRouter } from "react-router-dom";
+import Auth from "./components/Auth";
 
-const App = () => {
-  return (
-    <div>
-      <p className="text-2xl text-center">GPT Flix</p>
-    </div>
-  )
-}
+const appRouter = createBrowserRouter([
+  {
+    path: "/auth",
+    element: <Auth />
+  }
+])
 
-export default App
+export default appRouter

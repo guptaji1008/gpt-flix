@@ -1,10 +1,17 @@
+import { useSelector } from "react-redux";
+import MovieInfoAndList from "./MovieInfoAndList";
+import MovieTrailer from "./MovieTrailer";
 
 const Home = () => {
-  return (
-    <div>
-      <p className="text-4xl text-center">Home page GPT flic !!</p>
-    </div>
-  )
-}
 
-export default Home
+  const movieTrailer = useSelector(state => state.movie.topRatedMovieTrailerKey)
+
+  return (
+    <div className="flex">
+      {movieTrailer !== "" && <MovieTrailer />}
+      <MovieInfoAndList className="absolute w-full" />
+    </div>
+  );
+};
+
+export default Home;

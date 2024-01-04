@@ -1,3 +1,11 @@
+.spinner1 {
+    rotate: 180deg;
+    transition: 0.3s ease-in-out;
+}
+.spinner2 {
+    rotate: -0deg;
+    transition: 0.3s ease-in-out;
+}
 
 @tailwind base;
 @tailwind components;

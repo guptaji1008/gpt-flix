@@ -5,8 +5,11 @@ import Input from "./Input";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../../utils/firbase";
+import { useDispatch } from "react-redux";
+import { addUser } from "../../utils/slices/userSlice";
 
 const AuthForm = () => {
   const [login, setLogin] = useState(true);
@@ -16,6 +19,8 @@ const AuthForm = () => {
   const [conPassword, setConPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const [isPending, setIsPending] = useState(false);
+
+  const dispatch = useDispatch()
 
   const handleToggleButton = () => {
     setName("");
@@ -48,14 +53,14 @@ const AuthForm = () => {
         setTimeout(() => {
           setErrorMsg("");
         }, 5000);
+        setIsPending(false)
         return setErrorMsg(errorMessage);
       }
       signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           // Signed in
           setIsPending(false);
-          const user = userCredential.user;
-          console.log(user);
+          // const user = userCredential.user;
         })
         .catch((error) => {
           setIsPending(false);
@@ -72,14 +77,19 @@ const AuthForm = () => {
         setTimeout(() => {
           setErrorMsg("");
         }, 5000);
+        setIsPending(false)
         return setErrorMsg(errorMessage);
       }
       createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
+        .then(async (userCredential) => {
           // Signed up
           setIsPending(false);
-          const user = userCredential.user;
-          console.log(user);
+          // const user = userCredential.user;
+          await updateProfile(auth.currentUser, {
+            displayName: name
+          })
+          const { uid, email, displayName } = auth.currentUser;
+          dispatch(addUser({ uid, email, name: displayName }));
         })
         .catch((error) => {
           setIsPending(false);

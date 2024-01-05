@@ -9,6 +9,7 @@ import { auth } from "../utils/firbase";
 
 const Header = ({ className }) => {
   const [isRotate, setIsRotate] = useState(false);
+  const [focus, setFocus] = useState(false);
   const searchBox = useRef();
 
   const user = useSelector((state) => state.user);
@@ -30,13 +31,16 @@ const Header = ({ className }) => {
 
   return (
     <div className={className + " flex justify-between items-center py-3 bg-gradient-to-b from-black"}>
-      <img className="w-32 ml-8" src={LOGO} alt="" />
-      <div className="flex items-center space-x-3 mr-10">
+      <img className="lg:w-32 md:w-32 sm:w-28 w-24 lg:ml-8 md:ml-8 sm:ml-5 ml-3" src={LOGO} alt="" />
+      <div className="flex items-center lg:space-x-3 md:space-x-3 sm:space-x-2 space-x-1 lg:mr-10 md:mr-8 sm:mr-5 mr-3">
         <form onSubmit={handleSearchSubmit} className="flex relative">
           <input
             ref={searchBox}
-            className="rounded bg-transparent w-80 px-3 py-2 outline-none focus:bg-gray-400 focus:bg-opacity-30 transition"
+            onFocus={() => setFocus(true)}
+            onBlur={() => setFocus(false)}
+            className="rounded bg-transparent lg:w-80 md:w-72 sm:w-60 w-48 pl-3 pr-12 text-white py-2 outline-none focus:bg-gray-400 focus:bg-opacity-30 transition"
             type="text"
+            placeholder={focus ? "Search.." : ""}
           />
           <CiSearch
             onClick={handleSearchClick}
@@ -63,13 +67,13 @@ const Header = ({ className }) => {
               !isRotate
                 ? "hidden"
                 : "" +
-                  " absolute top-13 bg-black text-white bg-opacity-70 p-3 space-y-2 rounded"
+                  " absolute top-13 right-0 left-0 bg-black text-white bg-opacity-70 p-3 space-y-2 rounded"
             }
           >
-            <button>Profile</button>
-            <button>Help</button>
+            <div className="text-center"><button>Profile</button></div>
+            <div className="text-center"><button>Help</button></div>
             <hr />
-            <button onClick={handleLogOut}>Sign Out</button>
+            <div className="text-center"><button onClick={handleLogOut}>Sign Out</button></div>
           </div>
         </div>
       </div>

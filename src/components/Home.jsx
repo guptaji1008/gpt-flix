@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import MovieInfoAndList from "./MovieInfoAndList";
 import MovieTrailer from "./MovieTrailer";
+// import AllMovieList from "./AllMovieList";
 
 const Home = () => {
 
@@ -8,8 +9,9 @@ const Home = () => {
 
   return (
     <div className="flex">
-      {movieTrailer !== "" && <MovieTrailer />}
-      <MovieInfoAndList className="absolute w-full" />
+      {movieTrailer !== "" && <MovieTrailer className="absolute w-full -z-10"/>}
+      <MovieInfoAndList className="w-full"/>
+        {/* <AllMovieList /> */}
     </div>
   );
 };

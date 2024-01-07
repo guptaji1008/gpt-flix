@@ -7,6 +7,8 @@ import { useEffect } from "react";
 import { auth } from "./utils/firbase";
 import { onAuthStateChanged } from "firebase/auth";
 import { addUser, removeUser } from "./utils/slices/userSlice";
+import Header from "./components/Header";
+import SearchMovieList from "./components/SearchMovieList";
 
 const PreAuthLogic = () => {
 
@@ -40,6 +42,15 @@ const AppLayout = () => {
   )
 }
 
+const HomeAppLayOut = () => {
+  return (
+    <>
+      <Header className="fixed top-0 right-0 left-0" />
+      <Outlet />
+    </>
+  )
+}
+
 const appRouter = createBrowserRouter([
   {
     path: "/",
@@ -47,7 +58,17 @@ const appRouter = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />
+        element: <HomeAppLayOut />,
+        children: [
+          {
+            path: "/",
+            element: <Home />
+          },
+          {
+            path: "/search",
+            element: <SearchMovieList />
+          }
+        ]
       },
       {
         path: "/auth",

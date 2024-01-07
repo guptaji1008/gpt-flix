@@ -3,7 +3,7 @@ import MovieCard from "./MovieCard";
 const SingleMovieList = ({ list, className, typeOfMovies }) => {
   return (
     <div>
-        <p className="text-white font-semibold text-3xl py-5 pl-3">{typeOfMovies}:</p>
+        <p className="text-white font-semibold text-3xl pb-3 pl-3">{typeOfMovies}:</p>
       <div
         className={
           className +
@@ -12,7 +12,8 @@ const SingleMovieList = ({ list, className, typeOfMovies }) => {
       >
         {list?.map((movie) => (
           <MovieCard
-            className="flex-none"
+          key={movie.title}
+            className="flex-none "
             imageKey={movie.poster_path}
             alt={movie.title}
           />

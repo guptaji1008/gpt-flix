@@ -4,10 +4,13 @@ import AuthForm from "./form/AuthForm"
 const Auth = () => {
   return (
     <div>
+      <div className="w-[100vw] h-[100vh]">
       <img
+        className="size-full object-cover"
         src={BACK_IMAGE}
         alt="bgImage"
       />
+      </div>
       <AuthContent className="absolute inset-0" />
     </div>
   );

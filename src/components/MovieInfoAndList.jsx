@@ -8,12 +8,13 @@ import {
   addNowPlayingMovie,
   updateTrailerKey,
 } from "../utils/slices/movieSlice";
-import Header from "./Header";
 import { FaPlay } from "react-icons/fa";
 import { IoMdInformationCircleOutline } from "react-icons/io";
 import AllMovieList from "./AllMovieList";
+import { IoMdVolumeOff } from "react-icons/io";
+import { IoVolumeHigh } from "react-icons/io5";
 
-const MovieInfoAndList = ({ className }) => {
+const MovieInfoAndList = ({ className, muteControl, mute }) => {
   const dispatch = useDispatch();
   const [highMovie, setHighMovie] = useState(null);
   const [id, setId] = useState("");
@@ -44,7 +45,6 @@ const MovieInfoAndList = ({ className }) => {
       dispatch(addNowPlayingMovie(data.results));
       setHighMovie(highestRating(data.results));
       setId(highestRating(data.results).id);
-      console.log(highestRating(data.results))
     }
   }, [data]);
 
@@ -61,8 +61,7 @@ const MovieInfoAndList = ({ className }) => {
 
   return (
     <div className={className}>
-      <Header className="fixed top-0 right-0 left-0" />
-          <div className="w-2/3 p-5 ml-7 lg:mt-96 md:mt-72 sm:mt-32 mt-24">
+          <div className="w-2/3 p-5 ml-7 lg:mt-72 md:mt-52 sm:mt-32 mt-20">
             <p className="lg:text-6xl md:text-5xl sm:text-3xl text-2xl font-bold text-white">{highMovie?.title}</p>
             <p className="font-semibold text-white lg:text-base md:text-base sm:text-sm text-xs">{charCounter(highMovie?.overview)}</p>
           </div>
@@ -77,8 +76,11 @@ const MovieInfoAndList = ({ className }) => {
                 <p className="lg:text-base md:text-base text-sm">More Info</p>
               </button>
             </div>
+            <div className="flex items-center space-x-9">
+              <button onClick={muteControl}>{mute === "0" ? <IoMdVolumeOff className="text-white text-3xl" /> : <IoVolumeHigh className="text-white text-3xl" />}</button>
             <div className="py-2 px-3 border-l-2 border-white text-gray-200 bg-black bg-opacity-30">
               <p className="mr-5">U/A 16+</p>
+            </div>
             </div>
           </div>
           <AllMovieList className="mt-5" />

@@ -144,24 +144,20 @@ const AuthForm = () => {
           />
         )}
       </Form>
-      <div className="flex text-gray-200 w-80 items-center justify-between mt-2">
-        <div className="flex items-center space-x-1">
-          <input type="checkbox" id="rememberme" />
-          <label htmlFor="rememberme">Remember me</label>
-        </div>
+      <div className="flex text-gray-200 w-80 items-center justify-start mt-2">
         <a className="text-gray-200 hover:underline" href="#">
           Need help
         </a>
       </div>
       <p className="text-slate-300 mt-7">
-        {login ? "New to Netflix?" : "Already have an account?"}{" "}
+        {login ? "New to Netflix? " : "Already have an account? "}
         <button
           className="text-gray-200 hover:underline"
           onClick={handleToggleButton}
           disabled={isPending}
         >
           {login ? "Sign Up Now" : "Sign In Now"}
-        </button>{" "}
+        </button>
       </p>
     </div>
   );

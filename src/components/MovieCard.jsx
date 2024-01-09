@@ -3,7 +3,7 @@ import { IoMdInformationCircleOutline } from "react-icons/io";
 import SingleMovieInfo from "./SingleMovieInfo";
 import { useSelector } from "react-redux";
 
-const MovieCard = ({ imageKey, className, alt }) => {
+const MovieCard = ({ imageKey, className, alt, aiMovie }) => {
 
   const [selectedMovie, setSelectedMovie] = useState(null)
   const [moreInfoButton, setMoreInfoButton] = useState(false)
@@ -12,7 +12,11 @@ const MovieCard = ({ imageKey, className, alt }) => {
 
   const handleMoreInfoButton = (title) => {
     const movie = uniqueMovies.find((m) => m.title === title)
-    setSelectedMovie(movie)
+    if (movie) {
+      setSelectedMovie(movie)
+    } else {
+      setSelectedMovie(aiMovie)
+    }
   }
 
   return (
@@ -20,7 +24,7 @@ const MovieCard = ({ imageKey, className, alt }) => {
       <div
       onMouseEnter={() => setMoreInfoButton(true)}
       onMouseLeave={() => setMoreInfoButton(false)}
-      className={"w-44 cursor-pointer " + className + (moreInfoButton && "relative")}
+      className={"cursor-pointer relative " + className}
     >
       {moreInfoButton && <div className="absolute inset-0 backdrop-blur-sm transition">
         <div className="flex items-center justify-center size-full">
@@ -32,7 +36,7 @@ const MovieCard = ({ imageKey, className, alt }) => {
       </div>}
       <img
         className="w-full rounded"
-        src={`https://image.tmdb.org/t/p/w500${imageKey}`}
+        src={imageKey ? `https://image.tmdb.org/t/p/w500${imageKey}` : "https://i.pinimg.com/564x/16/f0/d5/16f0d56971f371019bfdc27e6a1d2984.jpg"}
         alt={alt}
       />
     </div>

@@ -10,7 +10,8 @@ const movieSlice = createSlice({
     uniqueMovies: null,
     topRatedMovieTrailerKey: "",
     selectedForMoreInfoMovie: {},
-    searchedMovie: ""
+    searchedMovie: "",
+    searchedMovieList: []
   },
   reducers: {
     addNowPlayingMovie: (state, action) => {
@@ -37,6 +38,9 @@ const movieSlice = createSlice({
     updateTrailerKey: (state, action) => {
       state.topRatedMovieTrailerKey = action.payload;
     },
+    resultOfSearchedMovie: (state, action) => {
+      state.searchedMovieList = action.payload;
+    },
   },
 });
 
@@ -48,6 +52,7 @@ export const {
   addUpcomingMovie,
   addUniqueMovie,
   selectedMovie,
-  onChangeSearchMovie
+  onChangeSearchMovie,
+  resultOfSearchedMovie
 } = movieSlice.actions;
 export default movieSlice.reducer;

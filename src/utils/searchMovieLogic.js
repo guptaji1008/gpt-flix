@@ -1,11 +1,11 @@
 
+let timer;
 function debounce(fn, d) {
-    let timer;
-    return function(...args) {
-        let context = this;
-        clearTimeout(timer)
+    return function(movieName, movies, callback) {
+        if (timer) clearTimeout(timer)
         timer = setTimeout(() => {
-            return fn.apply(context, [...args])
+            const results = fn.apply(null, [movieName, movies])
+            callback(results)
         }, d)
     }
 }
@@ -14,9 +14,7 @@ function movieSearched(movieName, movies) {
     let lowerCaseMovieName = movies.map((m) => ({...m, title: m.title.toLowerCase()}))
     let lowerCaseSearchMovieName = movieName.toLowerCase()
     lowerCaseMovieName = lowerCaseMovieName.filter((m) => m.title.includes(lowerCaseSearchMovieName));
-    console.log(lowerCaseMovieName)
-    console.log(lowerCaseSearchMovieName)
-    return lowerCaseMovieName;
+    return lowerCaseMovieName.map((m) => ({ ...m, title: movies.find((mov) => mov.id === m.id).title }));
 }
 
 const searchMovieLogic = debounce(movieSearched, 400);

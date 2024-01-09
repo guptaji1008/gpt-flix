@@ -3,19 +3,19 @@ import apiSlice from "./apiSlice";
 const movieApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getMovies: builder.query({
-      query: () => "/now_playing?page=1",
+      query: () => "/movie/now_playing?page=1",
     }),
     getMovieTrailer: builder.query({
-      query: (movie_id) => `/${movie_id}/videos`,
+      query: (movie_id) => `/movie/${movie_id}/videos`,
     }),
     getPopularMovies: builder.query({
-      query: () => "/popular",
+      query: () => "/movie/popular",
     }),
     getTopRatedMovies: builder.query({
-      query: () => "/top_rated",
+      query: () => "/movie/top_rated",
     }),
     getUpcomingMovies: builder.query({
-      query: () => "/upcoming",
+      query: () => "/movie/upcoming",
     }),
   }),
 });

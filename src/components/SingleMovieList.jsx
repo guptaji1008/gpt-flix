@@ -7,13 +7,13 @@ const SingleMovieList = ({ list, className, typeOfMovies }) => {
       <div
         className={
           className +
-          " flex flex-row space-x-2 overflow-x-auto scrollbar-thin scrollbar-thumb-black scrollbar-track-black"
+          " flex flex-row space-x-2 overflow-x-auto scrollbar-none"
         }
       >
         {list?.map((movie) => (
           <MovieCard
           key={movie.title}
-            className="flex-none "
+            className="w-44 flex-none "
             imageKey={movie.poster_path}
             alt={movie.title}
           />

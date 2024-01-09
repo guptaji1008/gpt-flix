@@ -1,4 +1,3 @@
-import { BACK_IMAGE, LOGO } from "../utils/constants";
 import AuthForm from "./form/AuthForm"
 
 const Auth = () => {
@@ -7,7 +6,7 @@ const Auth = () => {
       <div className="w-[100vw] h-[100vh]">
       <img
         className="size-full object-cover"
-        src={BACK_IMAGE}
+        src={import.meta.env.VITE_BACK_IMAGE}
         alt="bgImage"
       />
       </div>
@@ -25,7 +24,7 @@ const AuthContent = ({ className }) => {
         <div className="pl-8 w-full bg-gradient-to-b from-black">
           <img
             className="w-56"
-            src={LOGO}
+            src={import.meta.env.VITE_LOGO}
             alt="netflix-logo"
           />
         </div>

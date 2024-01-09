@@ -1,4 +1,3 @@
-import { LOGO } from "../utils/constants";
 import { CiSearch } from "react-icons/ci";
 import { useDispatch, useSelector } from "react-redux";
 import { FaCaretDown } from "react-icons/fa";
@@ -47,7 +46,7 @@ const Header = ({ className }) => {
       {
         user && <div className={className + " flex justify-between items-center py-3 bg-gradient-to-b from-black"}>
         <button onClick={() => navigate("/")}>
-          <img className="lg:w-32 md:w-32 sm:w-28 w-24 lg:ml-8 md:ml-8 sm:ml-5 ml-3" src={LOGO} alt="" />
+          <img className="lg:w-32 md:w-32 sm:w-28 w-24 lg:ml-8 md:ml-8 sm:ml-5 ml-3" src={import.meta.env.VITE_LOGO} alt="" />
         </button>
         <div className="flex items-center lg:space-x-3 md:space-x-3 sm:space-x-2 space-x-1 lg:mr-10 md:mr-8 sm:mr-5 mr-3">
           <div className="flex relative">

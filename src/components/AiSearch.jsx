@@ -35,7 +35,6 @@ const AiSearch = () => {
         messages: [{ role: "user", content: query }],
         model: "gpt-3.5-turbo",
       });
-      console.log(chatCompletion.choices[0].message.content);
       searchMovies([...chatCompletion.choices[0].message.content.split(", ")]);
     }
   };
@@ -87,7 +86,6 @@ const AiSearch = () => {
       <div className="pb-10 lg:px-28 md:px-16 sm:px-14 px-10 grid lg:grid-cols-5 md:grid-cols-5 sm:grid-cols-4 grid-cols-2 lg:gap-7 md:gap-5 sm:gap-4 gap-3">
         {movieList.length &&
           movieList.map((movie) => {
-            console.log(movie);
             return (
               <MovieCard
                 aiMovie={movie}
